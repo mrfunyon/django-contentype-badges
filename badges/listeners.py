@@ -79,21 +79,20 @@ def listen_for_badge_model_delete(sender, instance, **kwargs):
         if count == 0:
             print "Attempt to decrement below threshold."
             return
-        if not created:
-            if not c.is_maxed:
-                id = c.id
-                c.count = F('count') - 1
-                c.save()
-                # reload badge counter object
-                c = BadgeCounter.objects.get(pk=id)
-            next_level_badge = c.get_next_level()
-            print "Next Badge awarded in %s actions"%(next_level_badge.unlock_value - count)
-            if count >= next_level_badge.unlock_value:
-                print "Number Needed: %s"%(next_level_badge.unlock_value)
-                print "Count: %s"%(count)
-                print "Awarding badge %s to %s"%(next_level_badge, user)
-                next_level_badge.award_to(user)
+        if not c.is_maxed:
+            id = c.id
+            c.count = F('count') - 1
             c.save()
+            # reload badge counter object
+            c = BadgeCounter.objects.get(pk=id)
+        next_level_badge = c.get_next_level()
+        print "Next Badge awarded in %s actions"%(next_level_badge.unlock_value - count)
+        if count >= next_level_badge.unlock_value:
+            print "Number Needed: %s"%(next_level_badge.unlock_value)
+            print "Count: %s"%(count)
+            print "Awarding badge %s to %s"%(next_level_badge, user)
+            next_level_badge.award_to(user)
+        c.save()
 
 def listen_for_new_badges(sender, instance, created, **kwargs):
     """
