@@ -1,0 +1,10 @@
+THIS APPLICATION IS VERY BETA IN THIS POINT IN TIME.
+
+A dango application to provide badges with a content type administration.
+
+Right now this app only counts actions that happen in order they happen and does so quite naively.
+
+Future Things I want to have happen with this app include:
+	The ability for you to choose what thing you want to count and from where.
+		For example this application should be able to apply generic logic to an object using a signal sent by the model asking for this kind of treatment.
+

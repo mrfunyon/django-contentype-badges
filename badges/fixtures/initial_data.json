@@ -1,0 +1,67 @@
+[
+  {
+    "pk": 1, 
+    "model": "badges.badge", 
+    "fields": {
+      "reversed": false, 
+      "icon_folder": "comments/", 
+      "slug": "comment", 
+      "content_type": 545, 
+      "title": "# of Comments"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_5.png", 
+      "badge": 1, 
+      "unlock_value": 5
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_10.png", 
+      "badge": 1, 
+      "unlock_value": 10
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_20.png", 
+      "badge": 1, 
+      "unlock_value": 20
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_40.png", 
+      "badge": 1, 
+      "unlock_value": 40
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_80.png", 
+      "badge": 1, 
+      "unlock_value": 80
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "badges.badgelevel", 
+    "fields": {
+      "level_image": "com_160.png", 
+      "badge": 1, 
+      "unlock_value": 160
+    }
+  }
+]
