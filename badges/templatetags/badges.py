@@ -1,16 +1,19 @@
+try:
+    from hashlib import md5
+except ImportError:
+    from md5 import md5
 from django import template
 from django.conf import settings
 from django.core.cache import cache
 from badges.models import Badge, BadgeLevel
-
+from badges.utils import get_bagde_display_text
 register = template.Library()
 
 
 @register.tag
 def get_badges_for_user(parser, token):
     '''{% get_badges_for_user user as variable_name %}
-        where user is the user you want the badges from.
-       Adds category groups to context.'''
+        where user is the user you want the badges from.'''
     bits = token.contents.split()
     if bits[2] != 'as' or len(bits) < 4:
         raise template.TemplateSyntaxError, "%r usage: {% %r user as variable_name %}" % (bits[0], bits[0])
@@ -32,4 +35,17 @@ class GetBadgesNode(template.Node):
             if badge.unlock_value > current_highest.unlock_value:
                 highest_badges.update({badge.badge.slug: badge})
 
-        return {self.variable_name:highest_badges}
+        badges = []
+        for slug, badge in highest_badges.iteritems():
+            badge_vars = {
+                'badge': badge.badge,
+                'icon': badge.get_level_image_path(),
+                'alt': get_bagde_display_text(badge),
+                'title': badge.badge.title,
+                'slug': badge.badge.slug,
+                'badgelevel': badge,
+            }
+            badges.append(badge_vars)
+
+        context.update({self.variable_name:badges})
+        return ''

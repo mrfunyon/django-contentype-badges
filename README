@@ -1,6 +1,4 @@
-THIS APPLICATION IS VERY BETA IN THIS POINT IN TIME.
-
-A dango application to provide badges with a content type administration.
+A dango application to provide user badges with a content type administration.
 
 Right now this app only counts actions that happen in order they happen and does so quite naively.
 
